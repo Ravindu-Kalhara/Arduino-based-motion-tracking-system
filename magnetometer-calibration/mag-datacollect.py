@@ -4,9 +4,10 @@ import os
 import keyboard as kb
 import numpy as np
 
-BAUD_RATE = 115200
+BAUD_RATE = 115200  # set baud rate for serial communication
+# sring seperater which use to seperate components of vector readings.
 SEP_CHAR = ','
-LIMIT = 100
+# text file name which store raw magnetometer readings.
 FILE_NAME = "mag-raw-data.txt"
 readings = np.empty((0, 3))
 
@@ -41,23 +42,23 @@ def flush_out(n, SEP_CHAR):
         get_readings(ser, SEP_CHAR)
 
 
-def remove_bad_readings(raw_data, limt):
+def remove_bad_readings(raw_data, limit):
     # function to remove the the data points that extremely deviate from the normal distribution of data points.
     data = np.empty((0, 3))
     for row in raw_data:
-        if True not in ((row > -limt) != (row < limt)):
+        if True not in ((row > -limit) != (row < limit)):
             data = np.append(data, [row], axis=0)
     return data
 
 
-# warning - If you are not in Windows operating system, this function may not works
+# warning - If you are not in Windows operating system, this function may not works.
 # therefore on other platforms except Windows it is recomended to use manual defining the serial object.
 # ser = get_arduino_port(BAUD_RATE)
 ser = serial.Serial("/dev/ttyACM0", BAUD_RATE)
 
 if ser != None:
     flush_out(20, SEP_CHAR)
-    input("Press enter to start reacording the readings. ")
+    input("Press enter to start recording the readings. ")
     print("Start data recording.")
     flush_out(10, SEP_CHAR)
 
@@ -69,12 +70,12 @@ if ser != None:
         if kb.is_pressed('esc'):
             break
 
-    # check whether already data file exist and if such file exist then remove that
+    # check whether already data file exist and if such file exist then remove that.
     if os.path.exists(FILE_NAME):
         os.remove(FILE_NAME)
 
     # save the readings to a text file
-    readings = remove_bad_readings(readings, LIMIT)
+    readings = remove_bad_readings(readings, 100)
     np.savetxt(FILE_NAME, readings, delimiter="\t", fmt='%1.4f')
     print("Done")
 else:
