@@ -12,9 +12,9 @@ readings = np.empty((0, 3))
 
 
 def get_arduino_port(BAUD_RATE):
-    # Function to select the available com port for arduino dynamically.
-    # Warning - On windows operating system this function works perfectly.
-    # But on other platforms this function may not work.
+    # function to select the available com port for arduino dynamically.
+    # warning - On windows operating system this function works perfectly.
+    # but on other platforms this function may not work.
     for p in portlist.comports():
         info = p.description.lower()
         print(p)
@@ -24,7 +24,7 @@ def get_arduino_port(BAUD_RATE):
 
 
 def get_readings(ser, SEP_CHAR: str):
-    # Read the serial imput and return that as a list.
+    # read the serial imput and return that as a list.
     try:
         ser_reading = ser.readline().decode().strip().split(SEP_CHAR)
         if len(ser_reading) == 3:
@@ -36,13 +36,13 @@ def get_readings(ser, SEP_CHAR: str):
 
 
 def flush_out(n, SEP_CHAR):
-    # Take out few readings to 'flush' out bad ones
+    # take out few readings to 'flush' out bad ones
     for _ in range(n):
         get_readings(ser, SEP_CHAR)
 
 
 def remove_bad_readings(raw_data, limt):
-    # Function to remove the the data points that extremely deviate from the normal distribution of data points.
+    # function to remove the the data points that extremely deviate from the normal distribution of data points.
     data = np.empty((0, 3))
     for row in raw_data:
         if True not in ((row > -limt) != (row < limt)):
@@ -50,8 +50,8 @@ def remove_bad_readings(raw_data, limt):
     return data
 
 
-# Warning - If you are not in Windows operating system, this function may not works
-# Therefore on other platforms except Windows it is recomended to use manual definin the serial object.
+# warning - If you are not in Windows operating system, this function may not works
+# therefore on other platforms except Windows it is recomended to use manual defining the serial object.
 # ser = get_arduino_port(BAUD_RATE)
 ser = serial.Serial("/dev/ttyACM0", BAUD_RATE)
 

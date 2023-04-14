@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Use https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml#igrfwmm to find magnetic fieled stringth according to the location.
-# These must be decide according to the magnetic intensity of the readings at the location and variation of the data.
+# use https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml#igrfwmm to find magnetic fieled stringth according to the location.
+# these must be decide according to the magnetic intensity of the readings at the location and variation of the data.
 EARTH_MAG_STRENGTH = 41.0463
 MAG_READING_FILE = "mag_raw_data.txt"
 
@@ -22,7 +22,7 @@ b = np.array([[2.188976],
 
 
 def draw_circle(r, x0=0, y0=0, color='b'):
-    # Function to draw a cicle that center located in (x0, y0)
+    # function to draw a cicle that center located in (x0, y0)
     theta = np.linspace(0, 2 * np.pi, 200)
     a = r * np.cos(theta) + x0
     b = r * np.sin(theta) + y0
@@ -30,7 +30,7 @@ def draw_circle(r, x0=0, y0=0, color='b'):
 
 
 def get_calibrated_data(raw_data, Ainverse, b):
-    # Function to Genere calibrated magnetometer values.
+    # function to Genere calibrated magnetometer values.
     calibrated_data = np.empty((0, 3))
     for row in raw_data:
         row = row.reshape(3, 1)
@@ -59,7 +59,7 @@ def make_2d_plot(fig_num, x, y, calib_x, calib_y, circle_r, xlabel, ylabel, titl
 raw_data = np.genfromtxt(MAG_READING_FILE, delimiter='\t')
 calibrated_data = get_calibrated_data(raw_data, A, b)
 
-# Plot 3D plot for raw data and calibrated data
+# plot 3D plot for raw data and calibrated data
 fig = plt.figure(1, figsize=(6, 6))
 ax = fig.add_subplot(111, projection='3d')
 ax.plot(raw_data[:, 0], raw_data[:, 1],
