@@ -7,7 +7,7 @@ import numpy as np
 BAUD_RATE = 115200
 SEP_CHAR = ','
 LIMIT = 100
-FILE_NAME = "magnetic_raw_data.txt"
+FILE_NAME = "mag-raw-data.txt"
 readings = np.empty((0, 3))
 
 
