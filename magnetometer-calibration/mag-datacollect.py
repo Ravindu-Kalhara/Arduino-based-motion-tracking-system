@@ -13,9 +13,9 @@ readings = np.empty((0, 3))
 
 
 def get_arduino_port(BAUD_RATE):
-    # function to select the available com port for arduino dynamically.
-    # warning - On windows operating system this function works perfectly.
-    # but on other platforms this function may not work.
+    # function to select the available comport for Arduino dynamically.
+    # Warning - on windows operating system this function works perfectly.
+    # but on other platforms (UNIX based OSs) this function may not work.
     for p in portlist.comports():
         info = p.description.lower()
         print(p)
@@ -25,7 +25,7 @@ def get_arduino_port(BAUD_RATE):
 
 
 def get_readings(ser, SEP_CHAR: str):
-    # read the serial imput and return that as a list.
+    # read the serial input and return that as a list.
     try:
         ser_reading = ser.readline().decode().strip().split(SEP_CHAR)
         if len(ser_reading) == 3:
@@ -51,8 +51,8 @@ def remove_bad_readings(raw_data, limit):
     return data
 
 
-# warning - If you are not in Windows operating system, this function may not works.
-# therefore on other platforms except Windows it is recomended to use manual defining the serial object.
+# Warning - If you are not in Windows operating system, this function may not works.
+# therefore on other platforms (UNIX based OSs) except Windows it is recomended to define the serial object manually.
 # ser = get_arduino_port(BAUD_RATE)
 ser = serial.Serial("/dev/ttyACM0", BAUD_RATE)
 
