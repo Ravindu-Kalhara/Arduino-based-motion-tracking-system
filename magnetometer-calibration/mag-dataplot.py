@@ -6,14 +6,14 @@ import numpy as np
 EARTH_MAG_STRENGTH = 41.0463
 MAG_READING_FILE = "mag-raw-data.txt"
 
-# A = np.array([[0.919380, 0.016652, 0.014108],
+# Ainverse = np.array([[0.919380, 0.016652, 0.014108],
 #              [0.016652, 0.947940, 0.000166],
 #              [0.014108, 0.000166, 0.913351]])
 # b = np.array([[2.187339],
 #               [2.873407],
 #               [-12.222010]])
 
-A = np.array([[0.918885, 0.016650, 0.014657],
+Ainverse = np.array([[0.918885, 0.016650, 0.014657],
              [0.016650, 0.948416, -0.000023],
              [0.014657, -0.000023, 0.913989]])
 b = np.array([[2.188976],
@@ -57,7 +57,7 @@ def make_2d_plot(fig_num, x, y, calib_x, calib_y, circle_r, xlabel, ylabel, titl
 
 
 raw_data = np.genfromtxt(MAG_READING_FILE, delimiter='\t')
-calibrated_data = get_calibrated_data(raw_data, A, b)
+calibrated_data = get_calibrated_data(raw_data, Ainverse, b)
 
 # plot 3D plot for raw data and calibrated data
 fig = plt.figure(1, figsize=(6, 6))
