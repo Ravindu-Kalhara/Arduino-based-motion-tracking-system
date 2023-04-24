@@ -44,11 +44,12 @@ def flush_out(n, SEP_CHAR):
         time.sleep(0.01)
 
 
-def remove_bad_readings(raw_data, limit):
+def remove_bad_readings(raw_data:np.array, limit):
     # function to remove the the data points that extremely deviate from the normal distribution of data points.
     data = np.empty((0, 3))
     for row in raw_data:
-        if True not in ((row > -limit) != (row < limit)):
+        norm = np.linalg.norm(row)
+        if norm <= limit:
             data = np.append(data, [row], axis=0)
     return data
 
@@ -56,7 +57,7 @@ def remove_bad_readings(raw_data, limit):
 # Warning - If you are not in Windows operating system, this function may not works.
 # therefore on other platforms (UNIX based OSs) except Windows it is recomended to define the serial object manually.
 # ser = get_arduino_port(BAUD_RATE)
-ser = serial.Serial("/dev/ttyACM0", BAUD_RATE)
+ser = serial.Serial("/dev/cu.usbmodem14101", BAUD_RATE)
 
 if ser != None:
     print("Now can start record accelerometer readings.")
@@ -67,19 +68,19 @@ if ser != None:
         state = True
         while kb.is_pressed("space"):
             if state:
-                flush_out(20, SEP_CHAR)
+                flush_out(10, SEP_CHAR)
                 state = False
             r = get_readings(ser, SEP_CHAR)
             print(r)
             readings = np.append(readings, [r], axis=0)
-            time.sleep(0.01)
+            time.sleep(0.001)
 
     # check whether already data file exist and if such file exist then remove that.
     if os.path.exists(FILE_NAME):
         os.remove(FILE_NAME)
 
     # save the readings to a text file
-    readings = remove_bad_readings(readings, 100)
+    readings = remove_bad_readings(readings, 1.08)
     np.savetxt(FILE_NAME, readings, delimiter="\t", fmt='%1.4f')
     print("Done")
 else:
