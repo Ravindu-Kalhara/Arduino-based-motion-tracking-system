@@ -20,11 +20,11 @@ void setup()
 void loop()
 {
     acc = Acc.getReadings();
-    Serial.print(acc[0], 4);
+    Serial.print(acc[0], 8);
     Serial.print(',');
-    Serial.print(acc[1], 4);
+    Serial.print(acc[1], 8);
     Serial.print(',');
-    Serial.println(acc[2], 4);
+    Serial.println(acc[2], 8);
 
     delay(30);
 }
