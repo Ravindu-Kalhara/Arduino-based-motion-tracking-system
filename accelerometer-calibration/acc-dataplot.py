@@ -1,11 +1,19 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-G = 1
-G_READING_FILE = "acc-raw-data.txt"
+G = 9.81
+G_READING_FILE = "acc-raw-data-1.txt"
 
-Ainverse = np.zeros((3, 3))
-b = np.zeros((3, 1))
+Ainverse = np.array([
+    [1.003192, 0.002244, -0.002029],
+    [0.002244, 1.000812, -0.002718],
+    [-0.002029, -0.002718, 1.007279]
+    ])
+b = np.array([
+    [0.157448], 
+    [0.181007], 
+    [-0.172725]
+    ])
 
 
 def draw_circle(r, x0=0, y0=0, color='b'):
