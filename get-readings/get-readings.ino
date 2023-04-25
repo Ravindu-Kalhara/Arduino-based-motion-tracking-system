@@ -28,8 +28,8 @@ struct Sensor {
 };
 
 void TCA9548A_set_path(uint8_t TCA9548A_ADDRESS_, uint8_t bus) {
-  Wire.beginTransmission(TCA9548A_ADDRESS_);   // TCA9548A address is 0x70
-  Wire.write(1 << bus);           // send byte to select bus
+  Wire.beginTransmission(TCA9548A_ADDRESS_);  // TCA9548A address is 0x70
+  Wire.write(1 << bus);                       // send byte to select bus
   Wire.endTransmission();
 }
 
@@ -45,7 +45,7 @@ void setup() {
   Serial.begin(115200);
   Wire.setClock(400000);  // set I2C clock speed (page 5)
   Wire.begin();
-  
+
   TCA9548A_set_path(TCA9548A_ADDRESS, 1);
   SENSOR1.start(0x00);
   TCA9548A_set_path(TCA9548A_ADDRESS, 2);
@@ -71,6 +71,7 @@ void loop() {
     }
     output = "";
   }
+  delay(30);
 }
 
 String getFormatedOutput(String output_, float arr_[3], bool isEnd) {
