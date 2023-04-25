@@ -80,8 +80,8 @@ if ser != None:
         os.remove(FILE_NAME)
 
     # save the readings to a text file
-    readings = remove_bad_readings(readings, 1.08)
-    np.savetxt(FILE_NAME, readings, delimiter="\t", fmt='%1.4f')
+    readings = remove_bad_readings(readings, 10.6)
+    np.savetxt(FILE_NAME, readings, delimiter="\t", fmt='%1.8f')
     print("Done")
 else:
     print("No arduino board available.")
