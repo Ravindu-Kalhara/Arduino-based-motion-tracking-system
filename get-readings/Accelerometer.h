@@ -56,11 +56,11 @@ public:
     int16_t accLSBY = TwoWire::read() << 8 | TwoWire::read();
     int16_t accLSBZ = TwoWire::read() << 8 | TwoWire::read();
 
-    // convert LSB to g (page 29).
+    // convert LSB to m/s^2 (page 29).
     ACCEL_LSB_SENSITIVITY = getLSBSensitivity(FSR);
-    acc[0] = (float)accLSBX / ACCEL_LSB_SENSITIVITY;
-    acc[1] = (float)accLSBY / ACCEL_LSB_SENSITIVITY;
-    acc[2] = (float)accLSBZ / ACCEL_LSB_SENSITIVITY;
+    acc[0] = ((float)accLSBX / ACCEL_LSB_SENSITIVITY)*9.81;
+    acc[1] = ((float)accLSBY / ACCEL_LSB_SENSITIVITY)*9.81;
+    acc[2] = ((float)accLSBZ / ACCEL_LSB_SENSITIVITY)*9.81;
 
     return acc;
   }
