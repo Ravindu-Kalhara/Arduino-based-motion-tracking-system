@@ -54,7 +54,7 @@ def remove_bad_readings(raw_data, limit):
 # Warning - If you are not in Windows operating system, this function may not works.
 # therefore on other platforms (UNIX based OSs) except Windows it is recomended to define the serial object manually.
 # ser = get_arduino_port(BAUD_RATE)
-ser = serial.Serial("/dev/ttyACM0", BAUD_RATE)
+ser = serial.Serial("/dev/cu.usbmodem14101", BAUD_RATE)
 
 if ser != None:
     flush_out(20, SEP_CHAR)
@@ -76,7 +76,7 @@ if ser != None:
 
     # save the readings to a text file
     readings = remove_bad_readings(readings, 100)
-    np.savetxt(FILE_NAME, readings, delimiter="\t", fmt='%1.4f')
+    np.savetxt(FILE_NAME, readings, delimiter="\t", fmt='%1.8f')
     print("Done")
 else:
     print("No arduino board available.")
