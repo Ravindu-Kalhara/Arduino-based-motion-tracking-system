@@ -12,11 +12,11 @@ void setup(){
 
 void loop(){
     mag = Mag.getReadings();
-    Serial.print(mag[0], 4);
+    Serial.print(mag[0], 8);
     Serial.print(',');
-    Serial.print(mag[1], 4);
+    Serial.print(mag[1], 8);
     Serial.print(',');
-    Serial.println(mag[2], 4);
+    Serial.println(mag[2], 8);
 
     delay(30);
 }
