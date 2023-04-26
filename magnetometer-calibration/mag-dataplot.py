@@ -4,7 +4,7 @@ import numpy as np
 # use https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml#igrfwmm to find magnetic fieled stringth according to the location.
 # these must be decide according to the magnetic intensity of the readings at the location and variation of the data.
 EARTH_MAG_STRENGTH = 41.0337    # 41.0463
-MAG_READING_FILE = "mag-raw-data.txt"
+MAG_READING_FILE = "mag-raw-data-1.txt"
 
 # Ainverse = np.array([[0.919380, 0.016652, 0.014108],
 #              [0.016652, 0.947940, 0.000166],
@@ -13,12 +13,16 @@ MAG_READING_FILE = "mag-raw-data.txt"
 #               [2.873407],
 #               [-12.222010]])
 
-Ainverse = np.array([[0.918885, 0.016650, 0.014657],
-             [0.016650, 0.948416, -0.000023],
-             [0.014657, -0.000023, 0.913989]])
-b = np.array([[2.188976],
-              [2.871479],
-              [-12.204237]])
+Ainverse = np.array([
+    [1.030710, 0.004980, 0.002201],
+    [0.004980, 1.096441, -0.033818],
+    [0.002201, -0.033818, 0.984654]
+    ])
+b = np.array([
+    [2.650613],
+    [2.696443],
+    [-20.614620]
+    ])
 
 
 def draw_circle(r, x0=0, y0=0, color='b'):
