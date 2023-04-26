@@ -55,6 +55,7 @@ void setup() {
 void loop() {
   if (Serial.available()) {
     recievedChar = Serial.read();
+    delay(5);
     if (recievedChar == '1') {
       TCA9548A_set_path(TCA9548A_ADDRESS, 1);
       output = getFormatedOutput(output, SENSOR1.accelerometer.getReadings(), false);
