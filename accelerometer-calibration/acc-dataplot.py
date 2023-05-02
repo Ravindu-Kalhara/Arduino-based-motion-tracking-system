@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 G = 9.81
-G_READING_FILE = "acc-raw-data-1.txt"
+G_READING_FILE = "acc-raw-data.txt"
 
 Ainverse = np.array([
     [1.003192, 0.002244, -0.002029],
@@ -62,9 +62,9 @@ ax.plot(raw_data[:, 0], raw_data[:, 1],
 ax.plot(calibrated_data[:, 0], calibrated_data[:, 1],
         calibrated_data[:, 2], 'xb')  # draw claibrated 3D plot
 ax.set_title("Accelerometer readings")
-ax.set_xlabel('X (uT)')
-ax.set_ylabel('Y (uT)')
-ax.set_zlabel('Z (uT)')
+ax.set_xlabel('X (m/s^2)')
+ax.set_ylabel('Y (m/s^2)')
+ax.set_zlabel('Z (m/s^2)')
 ax.legend(["Raw data", "Calibrated Data"])
 ax.grid()
 ax.axis('equal')
@@ -72,15 +72,15 @@ plt.tight_layout()
 
 make_2d_plot(2, raw_data[:, 0], raw_data[:, 1],
              calibrated_data[:, 0], calibrated_data[:,
-                                                    1], G, 'X (g)', 'Y (g)', "Y vs X",
+                                                    1], G, 'X (m/s^2)', 'Y (m/s^2)', "Y vs X",
              ["Raw data", "Calibrated Data", "Magnitude of Earth Gravitational field strength"])
 make_2d_plot(3, raw_data[:, 1], raw_data[:, 2],
              calibrated_data[:, 1], calibrated_data[:,
-                                                    2], G, 'Y (g)', 'Z (g)', "Z vs Y",
+                                                    2], G, 'Y (m/s^2)', 'Z (m/s^2)', "Z vs Y",
              ["Raw data", "Calibrated Data", "Magnitude of Earth Gravitational field strength"])
 make_2d_plot(4, raw_data[:, 0], raw_data[:, 2],
              calibrated_data[:, 0], calibrated_data[:,
-                                                    2], G, 'X (g)', 'Z (g)', "Z vs X",
+                                                    2], G, 'X (m/s^2)', 'Z (m/s^2)', "Z vs X",
              ["Raw data", "Calibrated Data", "Magnitude of Earth Gravitational field strength"])
 
 plt.show()
