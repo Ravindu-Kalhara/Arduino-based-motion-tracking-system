@@ -58,9 +58,9 @@ public:
 
     // convert LSB to m/s^2 (page 29).
     ACCEL_LSB_SENSITIVITY = getLSBSensitivity(FSR);
-    acc[0] = ((float)accLSBX / ACCEL_LSB_SENSITIVITY)*9.81;
-    acc[1] = ((float)accLSBY / ACCEL_LSB_SENSITIVITY)*9.81;
-    acc[2] = ((float)accLSBZ / ACCEL_LSB_SENSITIVITY)*9.81;
+    acc[0] = -((float)accLSBX / ACCEL_LSB_SENSITIVITY)*9.81;
+    acc[1] = -((float)accLSBY / ACCEL_LSB_SENSITIVITY)*9.81;
+    acc[2] = -((float)accLSBZ / ACCEL_LSB_SENSITIVITY)*9.81;
 
     return acc;
   }
