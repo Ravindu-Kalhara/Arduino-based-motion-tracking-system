@@ -4,14 +4,7 @@ import numpy as np
 # use https://www.ngdc.noaa.gov/geomag/calculators/magcalc.shtml#igrfwmm to find magnetic fieled stringth according to the location.
 # these must be decide according to the magnetic intensity of the readings at the location and variation of the data.
 EARTH_MAG_STRENGTH = 41.0337    # 41.0463
-MAG_READING_FILE = "mag-raw-data-1.txt"
-
-# Ainverse = np.array([[0.919380, 0.016652, 0.014108],
-#              [0.016652, 0.947940, 0.000166],
-#              [0.014108, 0.000166, 0.913351]])
-# b = np.array([[2.187339],
-#               [2.873407],
-#               [-12.222010]])
+MAG_READING_FILE = "mag-raw-data.txt"
 
 Ainverse = np.array([
     [1.030710, 0.004980, 0.002201],
