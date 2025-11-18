@@ -27,8 +27,8 @@ Our project proposes an alternative method by using sensors mounted on the actor
 | Component | Quantity |
 |-----------|----------|
 | TCA9548A I2C Multiplexer | 1 |
-| GY-282 - HMC5983 three-axis magnetic field module | 3 |
-| MPU6050 (Gyroscope + Accelerometer + Temperature) Sensor Module | 3 |
+| GY-282 - HMC5983 three-axis magnetic field module | 2 |
+| MPU6050 (Gyroscope + Accelerometer + Temperature) Sensor Module | 2 |
 | Arduino Uno R3 | 1 |
 | Wire & tools | - |
 
@@ -67,19 +67,6 @@ The primary objective is to capture the motion of a human arm and forearm system
    - Open Blender and load the provided Blender project file.
    - Execute the Blender Python script to update the stick figure in real-time based on the captured motion data.
 
-### Contribution Guidelines
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Commit your changes (`git commit -m 'Add some feature'`).
-4. Push to the branch (`git push origin feature-branch`).
-5. Open a pull request.
-
 ### License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-### Acknowledgements
-
-- [Arduino](https://www.arduino.cc/)
-- [Blender](https://www.blender.org/)
